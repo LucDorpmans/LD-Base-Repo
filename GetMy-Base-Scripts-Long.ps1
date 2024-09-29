@@ -13,3 +13,12 @@ Get-MyScript "Chrome-Download+Run-Installer.ps1" -EditFile
 Get-MyScript "WAC-Download+Install.ps1" -EditFile
 Get-MyScript "EdgeMSI-Download-Only-Complete.ps1" -EditFile
 Get-MyScript "Edge-InstallOnly.ps1"
+
+$ProgressPreference = 'SilentlyContinue'
+$url = "https://github.com/LucDorpmans/$MyRepo/archive/refs/heads/main.zip" 
+$outFile = "$env:USERPROFILE\Downloads\$MyRepo.zip"
+
+Invoke-WebRequest -uri $url -OutFile $OutFile
+# (new-object Net.WebClient).DownloadFile($url, $outFile)
+Expand-Archive "$env:USERPROFILE\Downloads\$MyRepo.zip" -DestinationPath C:\ -Force
+
